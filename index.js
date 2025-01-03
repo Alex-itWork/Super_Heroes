@@ -82,7 +82,7 @@ function getCharacterModal(character) {
  * Получить информацию о персонажах с API
  */
 async function fetchCharacters() {
-    const apiUrl = 'https://gateway.marvel.com/v1/public/characters?apikey=https://jsfree-les-3-api.onrender.com/characters'; // Замените YOUR_API_KEY на ваш ключ API
+    const apiUrl = 'https://jsfree-les-3-api.onrender.com/characters'; // Замените YOUR_API_KEY на ваш ключ API
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
