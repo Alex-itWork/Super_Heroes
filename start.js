@@ -1,8 +1,16 @@
 async function start() {
-    let characterCardBox = document.querySelector('#character-card-box');
-    let characterModalBox = document.querySelector('#character-modal-box');
-    let characters = await fetchCharacters();
+    const characterCardBox = document.getElementById('character-card-box');
+    const characterModalBox = document.getElementById('character-modal-box');
 
-    characterCardBox.innerHTML = getCharacterCards(characters).join('');
-    characterModalBox.innerHTML = getCharacterModals(characters).join('');
+    try {
+        const characters = await fetchCharacters();
+        const characterCards = getCharacterCards(characters);
+        const characterModals = getCharacterModals(characters);
+
+        characterCardBox.innerHTML = characterCards.join('');
+        characterModalBox.innerHTML = characterModals.join('');
+    } catch (error) {
+        console.error('Ошибка при загрузке данных:', error);
+        characterCardBox.innerHTML = '<p class="text-danger">Ошибка при загрузке данных. Пожалуйста, попробуйте позже.</p>';
+    }
 }
