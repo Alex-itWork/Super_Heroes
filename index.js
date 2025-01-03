@@ -79,31 +79,36 @@ function getCharacterModal(character) {
 }
 
 /**
- * получим информацию о персонажах с API
+ * Получить информацию о персонажах с API
  */
-function fetchCharacters() {
-	let url = "https://netology-api-marvel.herokuapp.com/characters";
-	return fetch(url).then(res =>.json());
-    	
+async function fetchCharacters() {
+    const apiUrl = 'https://gateway.marvel.com/v1/public/characters?apikey=https://jsfree-les-3-api.onrender.com/characters'; // Замените YOUR_API_KEY на ваш ключ API
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        const characters = data.data.results;
+        displayCharacters(characters);
+    } catch (error) {
+        console.error('Ошибка при загрузке данных:', error);
+    }
 }
 
 /**
- * Получить массив карточек персонажей
+ * Отобразить карточки персонажей
  *
  * @param characters
- * @returns {Array}
  */
-function getCharacterCards(characters) {
-    // TODO 2
-    // characters.length - длина массива characters
+function displayCharacters(characters) {
+    const characterCardBox = document.getElementById('character-card-box');
+    const characterModalBox = document.getElementById('character-modal-box');
+
+    characterCardBox.innerHTML = characters.map(getCharacterCard).join('');
+    characterModalBox.innerHTML = characters.map(getCharacterModal).join('');
 }
 
 /**
- * Получить массив модальных окон персонажей
- *
- * @param characters
- * @returns {Array}
+ * Инициализация приложения
  */
-function getCharacterModals(characters) {
-    // TODO 3
+function start() {
+    fetchCharacters();
 }
