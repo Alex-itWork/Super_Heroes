@@ -79,36 +79,32 @@ function getCharacterModal(character) {
 }
 
 /**
- * Получить информацию о персонажах с API
+ * получим информацию о персонажах с API
  */
-async function fetchCharacters() {
-    const apiUrl = 'https://gateway.marvel.com/v1/public/characters?apikey=YOUR_API_KEY'; // Замените YOUR_API_KEY на ваш ключ API
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        const characters = data.data.results;
-        displayCharacters(characters);
-    } catch (error) {
-        console.error('Ошибка при загрузке данных:', error);
-    }
+function fetchCharacters() {
+	let url = "https://netology-api-
+marvel.herokuapp.com/characters";
+	return fetch(url).then(res =>.json());
+    	
 }
 
 /**
- * Отобразить карточки персонажей
+ * Получить массив карточек персонажей
  *
  * @param characters
+ * @returns {Array}
  */
-function displayCharacters(characters) {
-    const characterCardBox = document.getElementById('character-card-box');
-    const characterModalBox = document.getElementById('character-modal-box');
-
-    characterCardBox.innerHTML = characters.map(getCharacterCard).join('');
-    characterModalBox.innerHTML = characters.map(getCharacterModal).join('');
+function getCharacterCards(characters) {
+    // TODO 2
+    // characters.length - длина массива characters
 }
 
 /**
- * Инициализация приложения
+ * Получить массив модальных окон персонажей
+ *
+ * @param characters
+ * @returns {Array}
  */
-function start() {
-    fetchCharacters();
+function getCharacterModals(characters) {
+    // TODO 3
 }
