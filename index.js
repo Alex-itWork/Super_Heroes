@@ -82,8 +82,7 @@ function getCharacterModal(character) {
  * получим информацию о персонажах с API
  */
 function fetchCharacters() {
-	let url = "https://netology-api-
-marvel.herokuapp.com/characters";
+	let url = "https://netology-api-marvel.herokuapp.com/characters";
 	return fetch(url).then(res =>.json());
     	
 }
